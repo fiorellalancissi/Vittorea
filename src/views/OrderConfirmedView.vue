@@ -14,7 +14,7 @@ const deliveryType = computed(() => {
   return type === 'retiro' ? 'Retiro en local' : 'Envío a domicilio'
 })
 
-const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || '5491112345678'
+const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || '1128813455'
 const whatsappMessage = computed(() => {
   return `Hola! Acabo de confirmar mi pedido. Mi nombre es ${customerName.value}`
 })

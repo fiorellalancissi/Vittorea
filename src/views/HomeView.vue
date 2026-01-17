@@ -3,7 +3,7 @@ import { computed } from 'vue'
 import ProductGrid from '../components/ProductGrid.vue'
 import { useAdminStore } from '../stores/admin'
 
-const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || '5491112345678'
+const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || '1128813455'
 
 const adminStore = useAdminStore()
 
