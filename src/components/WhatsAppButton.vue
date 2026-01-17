@@ -1,5 +1,5 @@
 <script setup>
-const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || '1128813455'
+const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || '1123085864'
 const whatsappMessage = encodeURIComponent(
   import.meta.env.VITE_WHATSAPP_MESSAGE || 'Hola! Me gustaría recibir asesoramiento para elegir un perfume.'
 )

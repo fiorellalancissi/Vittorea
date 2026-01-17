@@ -3,7 +3,7 @@ import { useRoute, RouterLink } from 'vue-router'
 
 const route = useRoute()
 const status = route.query.status
-const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || '1128813455'
+const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || '1123085864'
 </script>
 
 <template>

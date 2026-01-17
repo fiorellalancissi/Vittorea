@@ -4,7 +4,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { useCartStore } from '../stores/cart'
 import { useAdminStore } from '../stores/admin'
 
-const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || '1128813455'
+const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || '1123085864'
 
 const route = useRoute()
 const router = useRouter()
