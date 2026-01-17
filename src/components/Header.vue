@@ -81,7 +81,7 @@ function handleLogout() {
 
       <nav class="nav" :class="{ 'nav--open': isMenuOpen }">
         <RouterLink to="/" class="nav-link" :class="{ 'nav-link--disabled': isHome }" @click="closeMenu">Inicio</RouterLink>
-        <a href="#catalogo" class="nav-link" @click="scrollToCatalog">Catálogo</a>
+        <button class="nav-link nav-link--button" @click="scrollToCatalog">Catálogo</button>
         <RouterLink 
           v-if="authStore.isAuthenticated" 
           to="/admin" 
@@ -227,6 +227,14 @@ function handleLogout() {
   text-transform: uppercase;
   color: var(--color-muted);
   transition: color var(--transition-fast);
+  text-decoration: none;
+}
+
+.nav-link--button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
 }
 
 .nav-link:hover,
