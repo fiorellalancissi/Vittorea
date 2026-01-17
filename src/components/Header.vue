@@ -15,6 +15,26 @@ const loginForm = ref({ username: '', password: '' })
 const loginError = ref('')
 
 const isAdminRoute = computed(() => route.path.startsWith('/admin'))
+const isHome = computed(() => route.path === '/')
+
+function scrollToCatalog() {
+  closeMenu()
+  if (route.path !== '/') {
+    router.push('/').then(() => {
+      setTimeout(() => {
+        const catalogSection = document.getElementById('catalogo')
+        if (catalogSection) {
+          catalogSection.scrollIntoView({ behavior: 'smooth' })
+        }
+      }, 100)
+    })
+  } else {
+    const catalogSection = document.getElementById('catalogo')
+    if (catalogSection) {
+      catalogSection.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+}
 
 function toggleMenu() {
   isMenuOpen.value = !isMenuOpen.value
@@ -60,8 +80,8 @@ function handleLogout() {
       </RouterLink>
 
       <nav class="nav" :class="{ 'nav--open': isMenuOpen }">
-        <RouterLink to="/" class="nav-link" @click="closeMenu">Inicio</RouterLink>
-        <RouterLink to="/#catalogo" class="nav-link" @click="closeMenu">Catálogo</RouterLink>
+        <RouterLink to="/" class="nav-link" :class="{ 'nav-link--disabled': isHome }" @click="closeMenu">Inicio</RouterLink>
+        <a href="#catalogo" class="nav-link" @click="scrollToCatalog">Catálogo</a>
         <RouterLink 
           v-if="authStore.isAuthenticated" 
           to="/admin" 
@@ -211,6 +231,12 @@ function handleLogout() {
 
 .nav-link:hover,
 .nav-link.router-link-active {
+  color: var(--color-text);
+}
+
+.nav-link--disabled {
+  opacity: 0.5;
+  pointer-events: none;
   color: var(--color-text);
 }
 
