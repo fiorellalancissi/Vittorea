@@ -25,9 +25,6 @@ const loading = computed(() => false) // Ya no hay carga async
             En Vittore creemos que elegir un perfume es una combinación entre experiencia e intuición.
             Seleccionamos perfumes árabes intensos y duraderos y te acompañamos a encontrar el que va con vos.
           </p>
-          <a href="#catalogo" class="btn btn-secondary hero-cta">
-            Descubrir catálogo
-          </a>
         </div>
       </div>
     </section>
