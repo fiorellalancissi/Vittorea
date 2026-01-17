@@ -83,7 +83,6 @@ function handleLogout() {
         <RouterLink to="/" class="nav-link" :class="{ 'nav-link--disabled': isHome }" @click="closeMenu">Inicio</RouterLink>
         <button class="nav-link nav-link--button" @click="scrollToCatalog">Catálogo</button>
         <RouterLink 
-          v-if="authStore.isAuthenticated" 
           to="/admin" 
           class="nav-link nav-link--admin" 
           @click="closeMenu"
@@ -92,19 +91,26 @@ function handleLogout() {
         </RouterLink>
       </nav>
 
-      <div class="header-actions">
-        <template v-if="authStore.isAuthenticated">
-          <div class="user-menu">
-            <span class="user-name">{{ authStore.user }}</span>
-            <button class="btn-link" @click="handleLogout">Cerrar sesión</button>
-          </div>
-        </template>
-        <template v-else>
-          <button class="login-button" @click="openLogin">
-            Iniciar sesión
-          </button>
-        </template>
+      <div class="header-actions"> 
+          v-if="!isAdminRoute"
+          class="cart-button" 
+          @click="cartStore.toggleCart" 
+          aria-label="Abrir carrito"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span v-if="cartStore.totalItems > 0" class="cart-badge">{{ cartStore.totalItems }}</span>
+        </button>
 
+        <button class="menu-toggle" @click="toggleMenu" aria-label="Menú">
+          <span class="menu-bar"></span>
+          <span class="menu-bar"></span>
+          <span class="menu-bar"></span>
+        </button>
+      <div class="header-actions">
         <button 
           v-if="!isAdminRoute"
           class="cart-button" 
@@ -127,51 +133,6 @@ function handleLogout() {
       </div>
     </div>
   </header>
-
-  <Teleport to="body">
-    <div v-if="showLoginModal" class="modal-overlay" @click.self="closeLogin">
-      <div class="login-modal">
-        <button class="modal-close" @click="closeLogin">&times;</button>
-        
-        <div class="login-header">
-          <h2 class="login-title">Iniciar sesión</h2>
-          <p class="login-subtitle">Acceso al panel de gestión</p>
-        </div>
-
-        <form class="login-form" @submit.prevent="handleLogin">
-          <div class="form-group">
-            <label class="form-label">Usuario</label>
-            <input 
-              type="text"
-              v-model="loginForm.username"
-              class="form-input"
-              placeholder="Ingresá tu usuario"
-              required
-              autocomplete="username"
-            />
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Contraseña</label>
-            <input 
-              type="password"
-              v-model="loginForm.password"
-              class="form-input"
-              placeholder="Ingresá tu contraseña"
-              required
-              autocomplete="current-password"
-            />
-          </div>
-
-          <p v-if="loginError" class="login-error">{{ loginError }}</p>
-
-          <button type="submit" class="btn btn-primary btn-block">
-            Ingresar
-          </button>
-        </form>
-      </div>
-    </div>
-  </Teleport>
 </template>
 
 <style scoped>

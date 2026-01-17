@@ -36,11 +36,10 @@ const routes = [
     name: 'PaymentError',
     component: () => import('../views/PaymentErrorView.vue')
   },
-  // Admin Routes (protegidas)
+  // Admin Routes
   {
     path: '/admin',
     component: () => import('../views/admin/AdminLayout.vue'),
-    meta: { requiresAuth: true },
     children: [
       {
         path: '',
@@ -90,23 +89,6 @@ const router = createRouter({
     } else {
       return { top: 0 }
     }
-  }
-})
-
-// Guard de navegación para rutas protegidas
-router.beforeEach((to, from, next) => {
-  if (to.matched.some(record => record.meta.requiresAuth)) {
-    // Import dinámico para evitar problemas de inicialización de Pinia
-    import('../stores/auth').then(({ useAuthStore }) => {
-      const authStore = useAuthStore()
-      if (!authStore.isAuthenticated) {
-        next({ path: '/', query: { login: 'required' } })
-      } else {
-        next()
-      }
-    })
-  } else {
-    next()
   }
 })
 
