@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://fiorellalancissi.github.io/Vittorea/sitemap.xml
